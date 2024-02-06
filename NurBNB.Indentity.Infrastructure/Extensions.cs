@@ -49,7 +49,8 @@ namespace NurBnb.Identity.Infrastructure
                 foreach (var mnemonic in ApplicationPermission.GetAllPermissions().Select(x => x.Mnemonic))
                 {
                     config.AddPolicy(mnemonic,
-                        policy => policy.RequireClaim("Permission", new string[] { mnemonic }));
+                        //policy => policy.RequireClaim("Permission",  mnemonic ));
+                     policy => policy.RequireClaim("Permission", new string[] { mnemonic }));
                 }
             });
 

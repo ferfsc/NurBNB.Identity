@@ -8,6 +8,6 @@ namespace NurBnb.Identity.Infrastructure.Config
 {
     internal class InitializerJsonPermission
     {
-        public string permission { get; set; }
+        public string? permission { get; set; }
     }
 }

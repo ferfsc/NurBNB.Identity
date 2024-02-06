@@ -53,7 +53,7 @@ namespace NurBnb.Identity.Infrastructure.Config
                 _logger.LogError(q, "The menu configuration couldnot be loaded, maybe missing file or malformed");
             }
 
-            InitializerJsonConfig initJsonObj = JsonConvert.DeserializeObject<InitializerJsonConfig>(initializerJson);
+            InitializerJsonConfig? initJsonObj = JsonConvert.DeserializeObject<InitializerJsonConfig>(initializerJson);
             if (initJsonObj == null)
             {
                 _logger.LogError("The configuration for the inisitailization is not well formed, skipping");
@@ -138,7 +138,7 @@ namespace NurBnb.Identity.Infrastructure.Config
                     continue;
                 }
 
-                ApplicationUser user = null;
+                ApplicationUser? user = null;
                 try
                 {
                     user = await _userManager.FindByNameAsync(userName);
@@ -176,7 +176,7 @@ namespace NurBnb.Identity.Infrastructure.Config
 
                 foreach (var role in initJsonObj.roles)
                 {
-                    string rolName = role.role;
+                    string? rolName = role.role;
                     if (string.IsNullOrWhiteSpace(rolName))
                     {
                         _logger.LogError("The role name was not set or empty in Initializer Json Config file, skipping");
@@ -204,12 +204,12 @@ namespace NurBnb.Identity.Infrastructure.Config
         private async Task AssignPermissionsToRoles(InitializerJsonConfig initJsonObj)
         {
             // Assigns permissions to roles
-            foreach (var role in initJsonObj.roles)
+            foreach (var roles in initJsonObj.roles)
             {
-                foreach (var permissionJson in role.permissions)
+                foreach (var permissionJson in roles.permissions)
                 {
                     ApplicationPermission ap = ApplicationPermission.GetPermission(permissionJson.permission.ToString());
-                    string rolName = role.role.ToString();
+                    string rolName = roles.role.ToString();
                     ApplicationRole objRole = await RoleManager.FindByNameAsync(rolName);
                     IList<Claim> claimsInRole = await RoleManager.GetClaimsAsync(objRole);
                     if (claimsInRole.Any(x => x.Value.Equals(ap.Mnemonic.ToString())))
@@ -227,7 +227,7 @@ namespace NurBnb.Identity.Infrastructure.Config
         /// <param name="permissionsJson"></param>
         private void ReadPermissions(string permissionsJson)
         {
-            List<PermissionJsonConfig> permissionsJsonObject = JsonConvert.DeserializeObject<List<PermissionJsonConfig>>(permissionsJson);
+            List<PermissionJsonConfig>? permissionsJsonObject = JsonConvert.DeserializeObject<List<PermissionJsonConfig>>(permissionsJson);
 
             if (permissionsJsonObject == null)
                 throw new ArgumentException("Could not read the permissions in the JSON configuration file");

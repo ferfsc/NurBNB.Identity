@@ -8,7 +8,7 @@ namespace NurBnb.Identity.Infrastructure.Config
 {
     internal class InitializerJsonRole
     {
-        public string role { get; set; }
-        public List<InitializerJsonPermission> permissions { get; set; }
+        public string? role { get; set; }
+        public List<InitializerJsonPermission>? permissions { get; set; }
     }
 }
