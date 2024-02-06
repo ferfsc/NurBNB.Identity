@@ -1,0 +1,20 @@
+[
+  {
+    "Mnemonic": "admin.security",
+    "Module": "Security",
+    "Name": "Security Management",
+    "Description": "Allows the user to manage security settings."
+  },
+  {
+    "Mnemonic": "admin.inventory",
+    "Module": "Inventory",
+    "Name": "Inventory Managemenet",
+    "Description": "Allows the user to manage inventory."
+  },
+  {
+    "Mnemonic": "admin.orders",
+    "Module": "Orders",
+    "Name": "Orders management",
+    "Description": "Allows the user to manage orders."
+  }
+] 

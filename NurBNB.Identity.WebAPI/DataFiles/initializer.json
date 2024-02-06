@@ -1,0 +1,22 @@
+{
+  "roles": [
+    {
+      "role": "Administrator",
+      "permissions": [
+        { "permission": "admin.orders" },
+        { "permission": "admin.inventory" },
+        { "permission": "admin.security" }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "user": "admin@fake.com",
+      "password": "Admin123*", //admin@123
+      "email": "admin@fake.com",
+      "userroles": [
+        { "role": "Administrator" }
+      ]
+    }
+  ]
+}
