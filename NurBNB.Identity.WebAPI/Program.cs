@@ -17,14 +17,14 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     IWebHostEnvironment env = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
-    SecurityInitializer securityInitializer = scope.ServiceProvider.GetRequiredService<SecurityInitializer>();
-    
+    SecurityInitializer securityInitializer = scope.ServiceProvider.GetRequiredService<SecurityInitializer>(); // comentar para cuando se haya publicado
+
 
     string contentRootPath = env.ContentRootPath;
     var permissionJsonFilePath = contentRootPath + "/DataFiles/permissions.json";
     var securityInitializationJsonFilePath = contentRootPath + "/DataFiles/initializer.json";
 
-    await securityInitializer.Initialize(permissionJsonFilePath, securityInitializationJsonFilePath);
+    await securityInitializer.Initialize(permissionJsonFilePath, securityInitializationJsonFilePath);  // comentar para cuando se haya publicado
 
 }
 

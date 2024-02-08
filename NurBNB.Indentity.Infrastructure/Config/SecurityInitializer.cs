@@ -26,12 +26,12 @@ namespace NurBnb.Identity.Infrastructure.Config
             _userManager = userManager;
 
 
-            string contentRootPath = environment.ContentRootPath;
-            var permissionJsonFilePath = contentRootPath + "/DataFiles/permissions.json";
-            var securityInitializationJsonFilePath = contentRootPath + "/DataFiles/initializer.json";
+            //string contentRootPath = environment.ContentRootPath;
+            //var permissionJsonFilePath = contentRootPath + "/DataFiles/permissions.json";
+            //var securityInitializationJsonFilePath = contentRootPath + "/DataFiles/initializer.json";
 
 
-            Initialize(permissionJsonFilePath, securityInitializationJsonFilePath).GetAwaiter().GetResult();
+            //Initialize(permissionJsonFilePath, securityInitializationJsonFilePath).GetAwaiter().GetResult();
         }
 
         private RoleManager<ApplicationRole> RoleManager => _roleManager;
@@ -63,9 +63,10 @@ namespace NurBnb.Identity.Infrastructure.Config
             // Creates the users
             bool errorConnectingDatabase = await InitializeUsers(initJsonObj);
 
-            if (errorConnectingDatabase)
+            if (!errorConnectingDatabase)
             {
-                _logger.LogError("Skipping all initialization because could not connect to database");
+                //_logger.LogError("Skipping all initialization because could not connect to database");
+                _logger.LogDebug("Ya existe el usuario registrado");
                 return;
             }
 

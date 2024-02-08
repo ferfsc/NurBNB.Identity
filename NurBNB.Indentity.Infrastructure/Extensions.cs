@@ -35,7 +35,7 @@ namespace NurBnb.Identity.Infrastructure
             }).AddEntityFrameworkStores<SecurityDbContext>()
             .AddDefaultTokenProviders();
 
-            services.AddScoped<SecurityInitializer>();
+            services.AddScoped<SecurityInitializer>(); // comentar cuando se haya publicado
 
             services.AddAuthorization(config =>
             {
